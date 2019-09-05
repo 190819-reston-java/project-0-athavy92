@@ -1,0 +1,4 @@
+Exceptions That I Want:
+Cannot withdraw more than what's in account
+Cannot deposit into an account that does not exist
+Can only enter ints
