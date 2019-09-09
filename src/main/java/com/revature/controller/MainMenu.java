@@ -1,26 +1,36 @@
 package com.revature.controller;
 
+import org.apache.log4j.Logger;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.revature.service.CustomerAccounts;
 
 public class MainMenu {
 	
-	private static Scanner selectNum = new Scanner(System.in);
+	static Logger bankMainMenuLogger = Logger.getLogger(MainMenu.class);
+
+	private static Scanner bankScanner = new Scanner(System.in);
 	
-	public static void WelcomeMessage() {
+	
+	public static void selectUser() {
+		bankMainMenuLogger.info("Main Menu Started");
 		System.out.println("Select your user access:");
 		System.out.println("1 Customer");
 		System.out.println("2 Employee");
-	}
-	
-	public static void selectUser() {
-		
-		
-		int userSelected = selectNum.nextInt(); 
+
+
+		int userSelected = bankScanner.nextInt(); 
+		bankMainMenuLogger.debug("User Input: " + userSelected);
+
 		//will throw an InputMismatchException if use anything other than int
 		
+		//try {
+		//	userSelected = selectNum.nextInt();
+		//} catch(InputMismatchException e) {
+		//	bankMainMenuLogger.warn("User Input: " + userSelected, e);
+		//	throw new InputMismatchException("Invalid Input");
+		//}
 		
 		switch (userSelected) {
 		case 1:

@@ -7,9 +7,39 @@ import com.revature.Main;
 import com.revature.controller.CustomerLogin;
 
 public class CustomerAccounts extends CustomerLogin {
+	protected static Scanner bankScanner = new Scanner(System.in);
+	
+	//Will work on the below code later
 	private static float balanceUser1 = (float) 5000.00;
+	private static int pinNumber = 8939;
+	private static String accountHolderName = "Alec";
+	
+	public static void customerPIN() {
+		System.out.println("Press enter PIN: ");
 
-	private static Scanner numPad = new Scanner(System.in);
+		int pinInput = bankScanner.nextInt(); 
+		int failedPINCounter = 0;
+		  
+		if (pinInput == pinNumber) {		
+			System.out.println("Welcome " + accountHolderName.toUpperCase());
+			CustomerAccounts.menuOptionsForCustomerInput();
+		} else if (pinInput != pinNumber) {
+			System.out.println("Wrong PIN");
+			failedPINCounter++;
+			if (failedPINCounter > 3) {
+				System.out.println("Too many failed attempts");
+				customerLoginCredentials();
+			}
+		}
+	}
+	//Getters and setters for balance
+	public static float getBalanceUser1() {
+		return balanceUser1;
+	}
+
+	public static void setBalanceUser1(float balanceUser1) {
+		CustomerAccounts.balanceUser1 = balanceUser1;
+	}
 
 	public static void menuOptionsForCustomerInput() {
 		System.out.println("Please choose an option:");
@@ -18,27 +48,28 @@ public class CustomerAccounts extends CustomerLogin {
 		System.out.println("3 Deposit");
 		System.out.println("4 Exit");
 
-		int customerInput = numPad.nextInt();
+		int customerInput = bankScanner.nextInt();
+		
 
 		switch (customerInput) {
 		case 1:
 			// balanceDisplay();
-			System.out.println("Customer balance: " + balanceUser1);
+			System.out.println("Customer balance: " + getBalanceUser1());
 			System.out.println("------------------------");
 			menuOptionsForCustomerInput();
-			break;
+			//break;
 		case 2:
 			System.out.println("Withdraw");
-			withdrawFromBalance();
+			WithdrawFromCustomerAccount.withdrawFromBalance();
 			System.out.println("------------------------");
 			menuOptionsForCustomerInput();
-			break;
+			//break;
 		case 3:
 			System.out.println("Deposit");
-			depositToBalance();
+			DepositToAccount.depositToBalance();
 			System.out.println("------------------------");
 			menuOptionsForCustomerInput();
-			break;
+			//break;
 		case 4:
 			System.out.println("Exiting");
 			logoutVerify();
@@ -51,47 +82,39 @@ public class CustomerAccounts extends CustomerLogin {
 
 	}
 
-	private static void withdrawFromBalance() {
-		System.out.println("Enter amount to withdraw: ");
-		float withdrawAmount = numPad.nextFloat();
+	//WITHDRAW CODE WAS HERE
 
-		float balanceAfterWithdraw = balanceUser1 - withdrawAmount;
-
-		System.out.println(balanceAfterWithdraw);
-
-		balanceUser1 = balanceAfterWithdraw;
-
-		// Will replace with Exception to stop withdrawing from balance
-		if (balanceUser1 < 0) {
-			System.out.println("Cannot withdraw. No funds available");
-		}
-	}
-
-	private static void depositToBalance() {
-		System.out.println("Enter amount to deposit: ");
-		float depositAmount = numPad.nextFloat();
-		float balanceAfterDeposit = balanceUser1 + depositAmount;
-		System.out.println(balanceAfterDeposit);
-		balanceUser1 = balanceAfterDeposit;
-
-	}
+	//DEPOSIT CODE WAS HERE
 	private static void logoutVerify() {
 		System.out.println("Enter PIN to logout or Press '1' to return: ");
-
-		int pinInput = numPad.nextInt(); 
+		int pinInput = bankScanner.nextInt(); 
 		
-		switch(pinInput) {
-		case 8939:
+		if(pinInput == pinNumber) {
 			System.out.println("Logging off");
 			Main.main(null);
-		case 1:
+		} else if (pinInput == 1){
 			menuOptionsForCustomerInput();
+		} else {
+			System.out.println("Input Not Recognized");
+			logoutVerify();
 		}
-		
-		
+
+		//switch(pinInput) {
+		//case 8939:
+		//	System.out.println("Logging off");
+		//	Main.main(null);
+		//case 1:
+		//	menuOptionsForCustomerInput();
+		//default:
+		//	if(pinInput != 8939 || pinInput != 1) {
+		//		System.out.println("Input Not Recognized");
+		//		logoutVerify();
+		//	}
 		
 		
 		
 	}
+
+
 	
 }
