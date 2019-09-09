@@ -10,8 +10,8 @@ public class CustomerLogin {
 	
 	//static Console console = System.console();
 
-	static Logger loginLogger = Logger.getLogger(MainMenu.class);
-	private static Scanner bankScanner = new Scanner(System.in);
+	protected static Logger loginLogger = Logger.getLogger(CustomerLogin.class);
+	public static Scanner bankScanner = new Scanner(System.in);
 	
 	//TESTING username and password
 	private static String username = "alecthav";
@@ -31,7 +31,7 @@ public class CustomerLogin {
 		if (user.equals(username) && pass.equals(password)) { //I want to match reference 
 			CustomerAccounts.customerPIN();
 		}else {
-			loginLogger.debug("User Input: " + bankScanner);
+			loginLogger.debug("User Input: " + user + pass);
 			System.out.println("Invalid Credentials");
 			customerLoginCredentials();
 		}

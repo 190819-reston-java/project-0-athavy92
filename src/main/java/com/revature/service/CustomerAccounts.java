@@ -1,13 +1,15 @@
 package com.revature.service;
 
-import java.util.Scanner;
+
 import java.util.InputMismatchException;
 import com.revature.service.CustomerAccounts;
 import com.revature.Main;
 import com.revature.controller.CustomerLogin;
+import com.revature.controller.MainMenu;
 
 public class CustomerAccounts extends CustomerLogin {
-	protected static Scanner bankScanner = new Scanner(System.in);
+	
+	
 	
 	//Will work on the below code later
 	private static float balanceUser1 = (float) 5000.00;
@@ -18,25 +20,28 @@ public class CustomerAccounts extends CustomerLogin {
 		System.out.println("Press enter PIN: ");
 
 		int pinInput = bankScanner.nextInt(); 
-		int failedPINCounter = 0;
+					
 		  
 		if (pinInput == pinNumber) {		
 			System.out.println("Welcome " + accountHolderName.toUpperCase());
 			CustomerAccounts.menuOptionsForCustomerInput();
 		} else if (pinInput != pinNumber) {
+			int failedPINCounter = 0;
 			System.out.println("Wrong PIN");
 			failedPINCounter++;
+			loginLogger.debug("Failed pin attempts: " + failedPINCounter);
 			if (failedPINCounter > 3) {
-				System.out.println("Too many failed attempts");
-				customerLoginCredentials();
+				loginLogger.fatal("Too many failed attempts");
 			}
-		}
+		customerPIN();
+		}		
+
+		
 	}
 	//Getters and setters for balance
 	public static float getBalanceUser1() {
 		return balanceUser1;
 	}
-
 	public static void setBalanceUser1(float balanceUser1) {
 		CustomerAccounts.balanceUser1 = balanceUser1;
 	}
@@ -49,8 +54,7 @@ public class CustomerAccounts extends CustomerLogin {
 		System.out.println("4 Exit");
 
 		int customerInput = bankScanner.nextInt();
-		
-
+	
 		switch (customerInput) {
 		case 1:
 			// balanceDisplay();

@@ -11,17 +11,19 @@ public class MainMenu {
 	static Logger bankMainMenuLogger = Logger.getLogger(MainMenu.class);
 
 	private static Scanner bankScanner = new Scanner(System.in);
+
 	
-	
-	public static void selectUser() {
+	public static void selectUser() {		
 		bankMainMenuLogger.info("Main Menu Started");
+		System.out.println("-------------------------------------");
+
 		System.out.println("Select your user access:");
 		System.out.println("1 Customer");
 		System.out.println("2 Employee");
 
+		
 
 		int userSelected = bankScanner.nextInt(); 
-		bankMainMenuLogger.debug("User Input: " + userSelected);
 
 		//will throw an InputMismatchException if use anything other than int
 		
@@ -31,7 +33,7 @@ public class MainMenu {
 		//	bankMainMenuLogger.warn("User Input: " + userSelected, e);
 		//	throw new InputMismatchException("Invalid Input");
 		//}
-		
+
 		switch (userSelected) {
 		case 1:
 			CustomerLogin.customerLoginCredentials();
@@ -40,6 +42,9 @@ public class MainMenu {
 			System.out.println("Welcome to Employee Options");
 			System.out.println("------------------------");
 			break;
+		default:		
+			bankMainMenuLogger.debug("User Input: " + userSelected);
+			bankMainMenuLogger.error("Input Invalid");
 		}
 		selectUser();
 	}

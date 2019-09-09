@@ -4,10 +4,15 @@ import java.util.Scanner;
 
 import com.revature.model.Customer;
 
-public class CreateNewCustomer {
+public class CreateNewCustomer extends Customer {
 	
-	private static Scanner newUserInfo = new Scanner(System.in);
+	private static Scanner bankScanner = new Scanner(System.in);
+
+	public CreateNewCustomer(String firstName, String username, String password) {
+		super(firstName, username, password);
+		
+	}
+
 	
-	Customer createCustomer = new Customer(null, null, null);
 
 }
