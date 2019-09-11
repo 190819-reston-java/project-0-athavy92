@@ -1,15 +1,15 @@
 package com.revature.model;
 
+
 public class Customer {
 	
 	//Instances
 	private String accountNumber;
-	private String accountType;
 	private String firstName;
-	private String username;
-	private String password;
-	private int balance; 
-	
+	private String username = "alecthavy";
+	private String password = "jumpman23";
+	private int pin = 8989;
+	private float balance = 5000; 
 	
 	public Customer(String firstName, String username, String password) {
 		super();
@@ -17,20 +17,17 @@ public class Customer {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public Customer() {
+		
+	};
 
+	
 	//Getters and Setters
 	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	public String getAccountType() {
-		return accountType;
-	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -50,10 +47,25 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getBalance() {
+	
+	public int getPin() {
+		return pin;
+	}
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+	public float getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(float balance) {
 		this.balance = balance;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [firstName=" + firstName + ", username=" + username + ", password=" + password + "]";
+	}
+
+	
+
 }

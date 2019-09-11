@@ -1,10 +1,27 @@
 package com.revature.model;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class CheckingAccount extends Customer {
 
-	public CheckingAccount(String firstName, String username, String password) {
-		super(firstName, username, password);
+	static Scanner createNewUser = new Scanner(System.in);	
+	
 		
+	public void createNewChecking() {
+		
+		System.out.println("Enter first name:");
+		this.setFirstName(createNewUser.next());
+		System.out.println("Enter username:");
+		this.setUsername(createNewUser.next());
+		System.out.println("Enter password: ");
+		this.setPassword(createNewUser.next());
+		
+		
+		ArrayList<Customer> checkingAccountUsers = new ArrayList<Customer>();
+		checkingAccountUsers.add(new Customer());		
+		System.out.println(checkingAccountUsers);
 	}
-
 }
+	
+	

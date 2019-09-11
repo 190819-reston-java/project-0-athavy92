@@ -2,14 +2,14 @@ package com.revature.exception;
 
 import com.revature.controller.CustomerController;
 
-public class WithdrawException extends RuntimeException {
+public class DepositException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public WithdrawException (String message) {
+	public DepositException(String message) {
 		CustomerController.menuOptionsForCustomerInput();
 	}
 }

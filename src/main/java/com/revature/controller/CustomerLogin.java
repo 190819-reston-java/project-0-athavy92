@@ -2,42 +2,39 @@ package com.revature.controller;
 
 import org.apache.log4j.Logger;
 
+import com.revature.model.Customer;
+
 //import java.io.Console;
 import java.util.Scanner;
-import com.revature.service.CustomerAccounts;
 
 public class CustomerLogin {	
 	
-	//static Console console = System.console();
+	private static Logger bankLoginLogger = Logger.getLogger(CustomerLogin.class);
+	protected static Scanner bankScanner = new Scanner(System.in);
 
-	protected static Logger loginLogger = Logger.getLogger(CustomerLogin.class);
-	public static Scanner bankScanner = new Scanner(System.in);
-	
-	//TESTING username and password
-	private static String username = "alecthav";
-	private static String password = "Password1#";
-	
-	public static void customerLoginCredentials() {
+	public static void customerLoginCredentials(String u, String p) {
+		
+		Customer chk = new Customer();
+		//Created an instance of Customer class to utilize getter
 
-		// Username and password
-		System.out.println("Enter Username: ");
-		String user = bankScanner.next();
-		System.out.println("Enter Password: ");
-		String pass = bankScanner.next();
+		System.out.println("Enter Username: ");		
+		u = bankScanner.next();
+
+		System.out.println("Enter Password: ");		
+		p = bankScanner.next();
+
 		
 		//Attempting to hide Password but it may not work in Eclipse
 		//char[] passString = console.readPassword();
 		//String pass = new String(passString);
-		if (user.equals(username) && pass.equals(password)) { //I want to match reference 
-			CustomerAccounts.customerPIN();
+		if (u.equals(chk.getUsername()) && p.equals(chk.getPassword())) { 
+			CustomerController.customerPIN();
 		}else {
-			loginLogger.debug("User Input: " + user + pass);
+			bankLoginLogger.debug("User Input: " + u + p);
 			System.out.println("Invalid Credentials");
-			customerLoginCredentials();
+			MainMenu.selectUser();
 		}
 		
-	  //Logic/Exception to check if login is valid will go here
-
 	}
 
 	

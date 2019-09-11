@@ -1,6 +1,8 @@
 package com.revature;
 
 import com.revature.controller.MainMenu;
+import com.revature.model.Customer;
+
 import org.apache.log4j.Logger;
 
 
@@ -12,11 +14,11 @@ import org.apache.log4j.Logger;
 
 public class Main {
 	
-	final static Logger bankMainAppLog = Logger.getLogger(Main.class);
+	static Logger bankMainLog = Logger.getLogger(Main.class);
 	
 	public static void main(String[] args) {
 	
-	bankMainAppLog.info("Program Started");
+	bankMainLog.info("Program Started");
 	
 	//MainMenu.WelcomeMessage();
 	MainMenu.selectUser();
