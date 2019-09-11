@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionUtil {
+public class BankAppConnectionUtil {
 	
 	private static Connection conn = null;
 	
@@ -17,7 +17,7 @@ public class ConnectionUtil {
 			//The following lines just ensure we find connection.properties
 			//regardless of how our project is built:
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
-			props.load(loader.getResourceAsStream("connection.properties"));
+			props.load(loader.getResourceAsStream("bankappdb.connection.properties"));
 			
 			String url = props.getProperty("url");
 			String username = props.getProperty("username");
