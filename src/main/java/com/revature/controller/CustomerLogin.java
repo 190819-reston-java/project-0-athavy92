@@ -27,16 +27,19 @@ public class CustomerLogin {
 		BankData dbUser = new BankDAOMethods();
 
 		System.out.println("Enter Username: ");
-		customerUsernameInput = bankScanner.next();
+		customerUsernameInput = bankScanner.next().trim();
 		System.out.println("Enter Password: ");
-		customerPasswordInput = bankScanner.next();
+		customerPasswordInput = bankScanner.next().trim();
 		System.out.println();
-
+		
+		
+		bankLoginLogger.warn("Accessing database");
 		user = dbUser.getCustomerAccount(customerUsernameInput, customerPasswordInput);
 		
 
 		
 		if (user != null) {
+			bankLoginLogger.warn("Checking database for matching username and password");
 			System.out.println("Welcome " + user.getFirstname().toUpperCase());
 			cc.menuOptionsForCustomerInput(user);
 			

@@ -14,7 +14,9 @@ import com.revature.repository.BankData;
 public class CustomerController extends CustomerLogin {
 
 	private static Logger customerAccountLogger = Logger.getLogger(CustomerController.class);
-	
+		
+	Throwable t;
+
 	//MENU OPTIONS FOR USER
 	public void menuOptionsForCustomerInput(Customer accountHolder) {
 		
@@ -32,7 +34,7 @@ public class CustomerController extends CustomerLogin {
 	
 		switch (customerInput) {
 		case "1":
-			// balanceDisplay();
+			customerAccountLogger.warn("Retrieving balance from database", t);
 			System.out.println("Customer balance: " + accountHolder.getBalance());
 			System.out.println("------------------------");
 			menuOptionsForCustomerInput(accountHolder);

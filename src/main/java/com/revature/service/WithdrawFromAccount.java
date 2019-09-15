@@ -13,7 +13,7 @@ public class WithdrawFromAccount extends CustomerController {
 	private static Logger withdrawLogger = Logger.getLogger(WithdrawFromAccount.class);	
 	CustomerController cc = new CustomerController();
 	BankData dbUser = new BankDAOMethods();
-
+	Throwable t;
 	public void withdraw(Customer accountHolder) throws WithdrawException {
 		
 		Customer accountBalance = accountHolder;
@@ -43,6 +43,8 @@ public class WithdrawFromAccount extends CustomerController {
 			
 			accountHolder.setBalance(balanceAfterWithdraw);
 			//dbUser.updateAccount(accountHolder);
+			withdrawLogger.warn("Updating data in database", t);
+	
 			dbUser.updateAccount(accountBalance);
 		}			
 
