@@ -14,10 +14,8 @@ public class MainMenu {
 		CustomerLogin login = new CustomerLogin();
 		
 		bankMainMenuLogger.info("Main Menu Started");
-		System.out.println("Select your sign in or register:");
-		System.out.println("\n");
+		System.out.println("Select to sign in or register:");
 		System.out.println("1 - Customer Sign In");
-		System.out.println("\n");
 		System.out.println("2 - Create Account");
 		System.out.println("\n");
 
@@ -28,13 +26,13 @@ public class MainMenu {
 			login.login(null);
 			break;
 		case "2":
-			System.out.println("Create New Customer");
+			System.out.println("Open Account");
 			System.out.println("------------------------");
-			CreateAccount.createNewCustomer(null); 
+			CreateAccount.register(null); 
 			break;
 		default:
-			bankMainMenuLogger.debug("User Input: " + userSelected);
-			bankMainMenuLogger.debug("Input Invalid");
+			bankMainMenuLogger.info("User Input: " + userSelected);
+			System.out.println("Input Invalid.");
 			selectUser();
 		}
 	}

@@ -14,7 +14,7 @@ public class CreateAccount {
 	private static String createUsernameInput = "";
 	private static String createPasswordInput = "";
 	
-	public static void createNewCustomer(Customer newUser) {
+	public static void register(Customer newUser) {
 		
 		newUser = new Customer();
 		
@@ -30,7 +30,7 @@ public class CreateAccount {
 		if (newUser != null) {
 			//Logger
 			System.out.println("Username exists. Please enter a new one.");
-			createNewCustomer(null);
+			register(null);
 		}
 		System.out.println("Enter a password:");
 		createPasswordInput = bankScanner.next().trim();
@@ -41,7 +41,7 @@ public class CreateAccount {
 		int newPINInput = bankScanner.nextInt();
 		if (String.valueOf(newPINInput).length() != 4) {
 			System.out.println("Invalid PIN. Please enter a 4-digit PIN");
-			createNewCustomer(null);
+			register(null);
 		}
 		
 		System.out.println("Please make a deposit or enter 0 to exit.");
