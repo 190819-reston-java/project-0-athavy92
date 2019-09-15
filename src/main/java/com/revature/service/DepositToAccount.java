@@ -10,14 +10,14 @@ import com.revature.controller.CustomerController;
 import com.revature.exception.DepositException;
 import com.revature.exception.WithdrawException;
 import com.revature.model.Customer;
-import com.revature.repository.BankData;
+import com.revature.repository.BankDao;
 
-import com.revature.repository.BankDAOMethods;
+import com.revature.repository.BankDaoImplementations;
 
 public class DepositToAccount extends CustomerController {
 	
 	CustomerController cc = new CustomerController();
-	BankData dbUser = new BankDAOMethods();
+	BankDao dbUser = new BankDaoImplementations();
 	
 	private static Logger depositLogger = Logger.getLogger(DepositToAccount.class);
 	private DecimalFormat currencyFormat = new DecimalFormat("#.00");
@@ -26,12 +26,11 @@ public class DepositToAccount extends CustomerController {
 				
 		System.out.println("Enter amount to deposit: ");
 	
-		
 		Customer accountBalance = accountHolder;
 
-		depositLogger.info("Withdraw method implemented");
+		depositLogger.info("Deposit method implemented");
 		System.out.println("-------------------------------------");
-		System.out.println("Enter amount to withdraw: ");
+		System.out.println("Enter amount to deposit: ");
 		
 		double depositAmount = bankScanner.nextDouble();
 		Double i = depositAmount;
@@ -52,12 +51,13 @@ public class DepositToAccount extends CustomerController {
 			System.out.println("Deposit Amount Confirmation: " + i);
 			System.out.println("NEW BALANCE: " + balanceAfterDeposit);
 			
-			accountHolder.setBalance(balanceAfterDeposit);
+			accountBalance.setBalance(balanceAfterDeposit);		
+			depositLogger.warn("Updating into database");
+			dbUser.updateAccount(accountBalance);
+
 		}			
 			
-		dbUser.updateAccount(accountHolder);
 
-		depositLogger.info("New Balance Set After Withdrawal");
 		cc.menuOptionsForCustomerInput(accountHolder);
 
 	

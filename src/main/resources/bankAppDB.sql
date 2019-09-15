@@ -16,6 +16,9 @@ INSERT INTO customer_account.bankacctinfo (username, firstname, user_pass, pinnu
 
 SELECT * FROM customer_account.bankacctinfo;
 
+UPDATE customer_account.bankacctinfo SET first_name = 'Tye' WHERE username = 'ReadyPlayerOne';
+UPDATE customer_account.bankacctinfo SET pin_number = 3303 WHERE first_name = 'Nick';
+
 ALTER TABLE customer_account.bankacctinfo
 	RENAME COLUMN pinnumber TO pin_number;
 

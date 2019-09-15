@@ -3,24 +3,35 @@ package com.revature.bankTestable;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import com.revature.controller.CustomerLogin;
 import com.revature.model.Customer;
 
-import com.revature.repository.BankDAOMethods;
-import com.revature.repository.BankData;
-import com.revature.service.WithdrawFromAccount;
 
 public class BankTestDriver {
 	
+	private static Customer c = null;
+	
+	@Before
+	public void setUp() {
+		BankDaoMock c = new BankDaoMock();
+	
+
+	}
+	
+	
 	@Test
 	public void userRetrievalTest () {
-		BankData userRetrieval = new BankDAOMethods();
-		Customer user = new Customer();
-		user.getUsername();
-		//String 
-		//assertTrue()
+		
+		//c = new Customer(new BankDaoMock());
+		BankDaoMock dbUserMock = new BankDaoMock();
+		String usernameInput = "ReadyPlayerOne";
+		
+		
+		assertTrue((dbUserMock.getUsername(usernameInput).equals(usernameInput)));
+		
+		
 	}
 	
 	

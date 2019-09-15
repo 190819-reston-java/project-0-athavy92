@@ -19,8 +19,18 @@ public class Main {
 	
 	bankMainLog.info("Program Started");
 	
+	System.out.println("##################################################################");
+	System.out.println("#                                                                #");
+	System.out.println("#                                                                #");
+	System.out.println("#               WELCOME TO QUEEN CITY BANK                       #");
+	System.out.println("#                                                                #");
+	System.out.println("#                                                                #");
+	System.out.println("##################################################################");
+	System.out.println("\n");
+	
 	MainMenu.selectUser();
 	
+	//TEST FROM VSC
 	 
 	}
 

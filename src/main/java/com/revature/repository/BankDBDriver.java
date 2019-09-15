@@ -9,13 +9,15 @@ public class BankDBDriver {
 	public static void main(String[] args) {
 		BankAppConnectionUtil.getConnection();
 		
-		BankData test = new BankDAOMethods();
+		BankDao test = new BankDaoImplementations();
 		
 		for (Customer c : test.getCustomers()) {
 			System.out.println(c);
 		};
 		
+		
 		//test.createNewAccount(new Customer(0, "Alison", "Wonderland4", "peace05", 7878, 20000));
+		test.createNewAccount(new Customer(0, "Lamar", "NotARB", "RavensQB8", 2245, 80000));
 		//System.out.println(test.getBalance("illenium3", 3));
 				
 		//System.out.println(test.getCustomerAccount("ReadyPlayerOne", "jumpman23$"));

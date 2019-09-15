@@ -3,7 +3,7 @@ package com.revature.repository;
 import java.util.List;
 import com.revature.model.Customer;
 
-public interface BankData {
+public interface BankDao {
 	
 	List<Customer> getCustomers();
 	
@@ -19,10 +19,15 @@ public interface BankData {
 	
 	Customer getPin(int pin);
 	
+	Customer getCustomerAccountVerfication(String username, String password, int pin);
+	
 	boolean updateAccount (Customer bc);
 	//boolean updateBalance(double bc, String username);
 	
 	boolean createNewAccount(Customer bc);
+
+	boolean updateBalance(double balanceAmt, String username);
+
 	
 }
 	

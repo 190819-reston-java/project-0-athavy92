@@ -6,16 +6,18 @@ import com.revature.controller.CustomerController;
 import com.revature.controller.CustomerLogin;
 import com.revature.exception.WithdrawException;
 import com.revature.model.Customer;
-import com.revature.repository.BankDAOMethods;
-import com.revature.repository.BankData;
+import com.revature.repository.BankDaoImplementations;
+import com.revature.repository.BankDao;
 
 public class WithdrawFromAccount extends CustomerController {
 	private static Logger withdrawLogger = Logger.getLogger(WithdrawFromAccount.class);	
 	CustomerController cc = new CustomerController();
-	BankData dbUser = new BankDAOMethods();
+	BankDao dbUser = new BankDaoImplementations();
 	Throwable t;
+	
 	public void withdraw(Customer accountHolder) throws WithdrawException {
 		
+		//accountHolder = null;
 		Customer accountBalance = accountHolder;
 
 		withdrawLogger.info("Withdraw method implemented");
@@ -24,6 +26,7 @@ public class WithdrawFromAccount extends CustomerController {
 		
 		double withdrawAmount = bankScanner.nextDouble();
 		Double i = withdrawAmount;
+		//Double j = accountBalance.getBalance();
 		Double j = accountBalance.getBalance();
 
 		if (i > j) {
@@ -41,11 +44,12 @@ public class WithdrawFromAccount extends CustomerController {
 			System.out.println("Withdrawal Amount Confirmation: " + i);
 			System.out.println("NEW BALANCE: " + balanceAfterWithdraw);
 			
-			accountHolder.setBalance(balanceAfterWithdraw);
-			//dbUser.updateAccount(accountHolder);
+			accountBalance.setBalance(balanceAfterWithdraw);
 			withdrawLogger.warn("Updating data in database", t);
-	
 			dbUser.updateAccount(accountBalance);
+
+			//dbUser.updateAccount(accountHolder);
+	
 		}			
 
 		withdrawLogger.info("New Balance Set After Withdrawal");

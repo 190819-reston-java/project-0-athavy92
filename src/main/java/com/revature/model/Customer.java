@@ -24,6 +24,10 @@ public class Customer {
 	public Customer() {
 	}
 
+	public Customer(int i, String string, String string2, int j, int k) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

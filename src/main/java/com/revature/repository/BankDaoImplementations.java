@@ -11,7 +11,7 @@ import com.revature.model.Customer;
 import com.revature.repository.BankAppConnectionUtil;
 import com.revature.repository.BankStreamCloser;
 
-public class BankDAOMethods implements BankData {
+public class BankDaoImplementations implements BankDao {
 
 	private static Customer createCustomerFromRS(ResultSet results) throws SQLException {
 		return new Customer(results.getInt("account_id"), results.getString("first_name"), results.getString("username"),
@@ -134,7 +134,7 @@ public class BankDAOMethods implements BankData {
 	public boolean updateAccount(Customer bc) {
 		PreparedStatement statement = null;
 		
-		final String query = "UPDATE customer_account.bankacctinfo SET first_name =?, username=?, password=?, balance=? WHERE account_id=?;";
+		final String query = "UPDATE customer_account.bankacctinfo SET first_name =?, username=?, password=?, pin_number=?, balance=? WHERE account_id=?;";
 		try(Connection conn = BankAppConnectionUtil.getConnection()){
 			statement = conn.prepareStatement(query);
 			statement.setString(1, bc.getFirstname());
@@ -155,7 +155,7 @@ public class BankDAOMethods implements BankData {
 	
 	
 //	@Override
-//	public Customer getBalance(String username) {
+//	public Customer getBalance(Customer username) {
 //		Customer userBalance = null;
 //
 //		PreparedStatement statement = null;
@@ -181,23 +181,23 @@ public class BankDAOMethods implements BankData {
 //		return userBalance;
 //	}
 	
-//	@Override
-//	public boolean updateBalance(double balanceAmt, String username) {
-//		final String query = "UPDATE customer_account.bankacctinfo SET balance=? WHERE username = ?;";
-//
-//		try (Connection conn = BankAppConnectionUtil.getConnection()){
-//			PreparedStatement statement = conn.prepareStatement(query);
-//			statement.setDouble(1, balanceAmt);
-//			statement.setString(2, username);
-//			statement.execute();
-//			
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//			return false;
-//		} 
-//		
-//		return true;
-//	}
+	@Override
+	public boolean updateBalance(double balanceAmt, String username) {
+		final String query = "UPDATE customer_account.bankacctinfo SET balance=? WHERE username = ?;";
+
+		try (Connection conn = BankAppConnectionUtil.getConnection()){
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setDouble(1, balanceAmt);
+			statement.setString(2, username);
+			statement.execute();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} 
+		
+		return true;
+	}
 
 	@Override
 	public boolean createNewAccount(Customer bc) {
@@ -243,6 +243,37 @@ public class BankDAOMethods implements BankData {
 		
 			statement = conn.prepareStatement(query);
 			statement.setInt(1, pin);
+			if(statement.execute()) {
+				results = statement.getResultSet();
+				if (results.next()) {
+					user = createCustomerFromRS(results);
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BankStreamCloser.close(results);
+			BankStreamCloser.close(statement);
+		}
+
+		return user;
+	}
+
+	@Override
+	public Customer getCustomerAccountVerfication(String username, String password, int pin) {
+		Customer user = null;
+
+		PreparedStatement statement = null;
+		ResultSet results = null;
+		String query = "SELECT * FROM customer_account.bankAcctInfo WHERE username =? AND password = ? AND pin_number = ?";
+
+		try (Connection conn = BankAppConnectionUtil.getConnection()) {
+			
+			statement = conn.prepareStatement(query);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			statement.setInt(3, pin);
 			if(statement.execute()) {
 				results = statement.getResultSet();
 				if (results.next()) {
