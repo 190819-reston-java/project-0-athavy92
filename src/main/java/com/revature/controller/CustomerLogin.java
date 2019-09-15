@@ -3,39 +3,54 @@ package com.revature.controller;
 import org.apache.log4j.Logger;
 
 import com.revature.model.Customer;
-
-//import java.io.Console;
+import com.revature.repository.BankData;
+import com.revature.repository.BankDAOMethods;
 import java.util.Scanner;
 
-public class CustomerLogin {	
-	
+public class CustomerLogin {
+
 	private static Logger bankLoginLogger = Logger.getLogger(CustomerLogin.class);
 	protected static Scanner bankScanner = new Scanner(System.in);
-
-	public static void customerLoginCredentials(String u, String p) {
 		
-		Customer chk = new Customer();
-		//Created an instance of Customer class to utilize getter
+	protected String customerUsernameInput;
+	protected String customerPasswordInput;
+	protected int pinInput;
+	
+	//protected Customer user = new Customer();
 
-		System.out.println("Enter Username: ");		
-		u = bankScanner.next();
+	public Customer login(Customer user) {	
+		
+		user = new Customer();
 
-		System.out.println("Enter Password: ");		
-		p = bankScanner.next();
+		CustomerController cc = new CustomerController();
+		
+		BankData dbUser = new BankDAOMethods();
+
+		System.out.println("Enter Username: ");
+		customerUsernameInput = bankScanner.next();
+		System.out.println("Enter Password: ");
+		customerPasswordInput = bankScanner.next();
+		System.out.println();
+
+		user = dbUser.getCustomerAccount(customerUsernameInput, customerPasswordInput);
+		
 
 		
-		//Attempting to hide Password but it may not work in Eclipse
-		//char[] passString = console.readPassword();
-		//String pass = new String(passString);
-		if (u.equals(chk.getUsername()) && p.equals(chk.getPassword())) { 
-			CustomerController.customerPIN();
-		}else {
-			bankLoginLogger.debug("User Input: " + u + p);
-			System.out.println("Invalid Credentials");
+		if (user != null) {
+			System.out.println("Welcome " + user.getFirstname().toUpperCase());
+			cc.menuOptionsForCustomerInput(user);
+			
+		} else {
+			System.out.println("Username/Password not valid. Please try again");
 			MainMenu.selectUser();
-		}
-		
-	}
+		}	
+		return user;
+
+	}			
 
 	
+	
 }
+	
+
+

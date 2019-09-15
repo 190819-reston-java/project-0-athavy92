@@ -4,68 +4,67 @@ package com.revature.model;
 public class Customer {
 	
 	//Instances
-	private String accountNumber;
+	private int id;
 	private String firstName;
-	private String username = "alecthavy";
-	private String password = "jumpman23";
-	private int pin = 8989;
-	private float balance = 5000; 
-	
-	public Customer(String firstName, String username, String password) {
+	private String userName;
+	private String userPass;
+	private int pinNumber;
+	private double balance; 
+
+	public Customer(int id, String firstname, String username, String userPass, int pinNumber, double balance) {
 		super();
-		this.firstName = firstName;
-		this.username = username;
-		this.password = password;
+		this.id = id;
+		this.firstName = firstname;
+		this.userName = username;
+		this.userPass = userPass;
+		this.pinNumber = pinNumber;
+		this.balance = balance;
 	}
 	
 	public Customer() {
-		
-	};
-
-	
-	//Getters and Setters
-	public String getAccountNumber() {
-		return accountNumber;
 	}
 
-	public String getFirstName() {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getFirstname() {
 		return firstName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstName = firstname;
 	}
-
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPass() {
+		return userPass;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPass(String user_pass) {
+		this.userPass = user_pass;
 	}
-	
-	public int getPin() {
-		return pin;
+	public int getPinNumber() {
+		return pinNumber;
 	}
-	public void setPin(int pin) {
-		this.pin = pin;
+	public void setPinNumber(int pinNumber) {
+		this.pinNumber = pinNumber;
 	}
-	public float getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(float balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", username=" + username + ", password=" + password + "]";
+		return "Customer [AccoundID: " + id + ", First Name: " + firstName + ", Username: " + userName
+				+ ", User Password: " + userPass + ", PIN: " + pinNumber + ", Balance = " + balance + "]";
 	}
-
-	
 
 }

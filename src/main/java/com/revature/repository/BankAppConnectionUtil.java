@@ -1,4 +1,4 @@
-package com.revature.utils;
+package com.revature.repository;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,10 +12,7 @@ public class BankAppConnectionUtil {
 	
 	public static Connection getConnection() {
 		try {
-			//We'll write some boilerplate to work with Properties
 			Properties props = new Properties();
-			//The following lines just ensure we find connection.properties
-			//regardless of how our project is built:
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			props.load(loader.getResourceAsStream("bankappdb.connection.properties"));
 			
@@ -23,7 +20,6 @@ public class BankAppConnectionUtil {
 			String username = props.getProperty("username");
 			String password = props.getProperty("password");
 			
-			//How to actually make connections in JDBC
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("======CONNECTED===========");
 		

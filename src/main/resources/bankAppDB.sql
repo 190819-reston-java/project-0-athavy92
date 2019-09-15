@@ -5,13 +5,14 @@ id SERIAL NOT NULL UNIQUE,
 firstname VARCHAR(100),
 username VARCHAR(100) UNIQUE,
 user_pass VARCHAR(100),
-pinNumber NUMERIC(4)
+pinNumber NUMERIC(4),
+balance NUMERIC(10,2) NOT NULL DEFAULT(0.00)
 );
 
-DROP TABLE customer_account.bankacctinfo;
+--DROP TABLE customer_account.bankacctinfo;
 
 INSERT INTO customer_account.bankacctinfo (username, firstname, user_pass, pinnumber) VALUES
-('ReadyPlayer1', 'Sam', 'jumpman23', '6865');
+('ReadyPlayerOne', 'Sam', 'jumpman23', '7777');
 
 SELECT * FROM customer_account.bankacctinfo;
 
@@ -19,7 +20,10 @@ ALTER TABLE customer_account.bankacctinfo
 	RENAME COLUMN pinnumber TO pin_number;
 
 ALTER TABLE customer_account.bankacctinfo
-	ADD PRIMARY KEY (ID);
+	DROP COLUMN balance;
+
+ALTER TABLE customer_account.bankacctinfo
+	ADD PRIMARY KEY (id);
 
 CREATE TABLE transaction_history(
 transaction_id SERIAL UNIQUE,
@@ -39,5 +43,17 @@ time_of_withdraw TIMESTAMP NOT NULL,
 withdraw_amount NUMERIC (6)
 );
 
+CREATE TABLE login_info (
+	username VARCHAR(100) UNIQUE NOT NULL,
+	user_pass VARCHAR(100) NOT NULL,
+	pinNumber NUMERIC(4) NOT NULL
+	);
+
+ALTER TABLE customer_account.login_info
+	ADD CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES customer_account.bankacctinfo(username);
 DROP TABLE deposit_history;
+
+UPDATE customer_account.bankacctinfo
+SET firstname = 'Nick', username = 'illenium3', user_pass = 'sadboi247', pinnumber = 0923, balance = 23000.89  
+WHERE id=5;
 	

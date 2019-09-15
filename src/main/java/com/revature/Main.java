@@ -1,11 +1,9 @@
 package com.revature;
 
 import com.revature.controller.MainMenu;
-import com.revature.model.Customer;
-import com.revature.utils.BankAppConnectionUtil;
+import com.revature.repository.BankAppConnectionUtil;
 
 import org.apache.log4j.Logger;
-
 
 /** 
  * Create an instance of your controller and launch your application.
@@ -14,18 +12,16 @@ import org.apache.log4j.Logger;
  */
 
 public class Main {
-	
 	static Logger bankMainLog = Logger.getLogger(Main.class);
-	
 	public static void main(String[] args) {
 	
 	BankAppConnectionUtil.getConnection();
 	
 	bankMainLog.info("Program Started");
 	
-	//MainMenu.WelcomeMessage();
 	MainMenu.selectUser();
 	
+	 
 	}
 
 		
