@@ -20,13 +20,13 @@ public class Main {
 	bankMainLog.info("Program Started");
 	
 	
-	System.out.println("##################################################################");
-	System.out.println("#                                                                #");
-	System.out.println("#                                                                #");
-	System.out.println("#               WELCOME TO QUEEN CITY BANK                       #");
-	System.out.println("#                                                                #");
-	System.out.println("#                                                                #");
-	System.out.println("##################################################################");
+	System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+	System.out.println("Z                                                                Z");
+	System.out.println("Z                                                                Z");
+	System.out.println("Z                       BUZZ CITY BANK                           Z");
+	System.out.println("Z                                                                Z");
+	System.out.println("Z                                                                Z");
+	System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 	System.out.println("\n");
 	
 	MainMenu.selectUser();
