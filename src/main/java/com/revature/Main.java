@@ -12,12 +12,13 @@ import org.apache.log4j.Logger;
  */
 
 public class Main {
-	static Logger bankMainLog = Logger.getLogger(Main.class);
+	private static Logger bankMainLog = Logger.getLogger(Main.class);
 	public static void main(String[] args) {
 	
 	BankAppConnectionUtil.getConnection();
 	
 	bankMainLog.info("Program Started");
+	
 	
 	System.out.println("##################################################################");
 	System.out.println("#                                                                #");
@@ -29,9 +30,7 @@ public class Main {
 	System.out.println("\n");
 	
 	MainMenu.selectUser();
-	
-	//TEST FROM VSC
-	 
+		 
 	}
 
 		

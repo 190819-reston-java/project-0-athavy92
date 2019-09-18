@@ -1,6 +1,5 @@
 package com.revature.exception;
 
-import com.revature.controller.CustomerController;
 
 public class DepositException extends RuntimeException {
 

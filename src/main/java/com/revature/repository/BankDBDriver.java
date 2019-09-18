@@ -16,8 +16,14 @@ public class BankDBDriver {
 		};
 		
 		
+		//System.out.println(test.getCustomerAccount("ReadyPlayerOne", "jumpman23$"));
+		
+		System.out.println(test.getUsername("ReadyPlayerOne"));
+		
+		
+		
 		//test.createNewAccount(new Customer(0, "Alison", "Wonderland4", "peace05", 7878, 20000));
-		test.createNewAccount(new Customer(0, "Lamar", "NotARB", "RavensQB8", 2245, 80000));
+		//test.createNewAccount(new Customer(0, "Lamar", "NotARB", "RavensQB8", 2245, 80000));
 		//System.out.println(test.getBalance("illenium3", 3));
 				
 		//System.out.println(test.getCustomerAccount("ReadyPlayerOne", "jumpman23$"));

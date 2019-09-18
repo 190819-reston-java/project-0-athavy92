@@ -21,7 +21,7 @@ public class BankAppConnectionUtil {
 			String password = props.getProperty("password");
 			
 			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("======CONNECTED===========");
+			//System.out.println("======CONNECTED===========");
 		
 		} catch (IOException e) {
 			e.printStackTrace();

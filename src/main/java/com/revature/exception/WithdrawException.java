@@ -1,6 +1,5 @@
 package com.revature.exception;
 
-import com.revature.controller.CustomerController;
 import com.revature.service.WithdrawFromAccount;
 
 public class WithdrawException extends RuntimeException {

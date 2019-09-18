@@ -1,12 +1,10 @@
 package com.revature.service;
 
-import java.text.DecimalFormat;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.revature.controller.CustomerController;
+import com.revature.controller.AccountHolderTerminal;
 import com.revature.exception.DepositException;
 import com.revature.exception.WithdrawException;
 import com.revature.model.Customer;
@@ -14,48 +12,45 @@ import com.revature.repository.BankDao;
 
 import com.revature.repository.BankDaoImplementations;
 
-public class DepositToAccount extends CustomerController {
+public class DepositToAccount extends AccountHolderTerminal {
 	
-	CustomerController cc = new CustomerController();
+	AccountHolderTerminal cc = new AccountHolderTerminal();
 	BankDao dbUser = new BankDaoImplementations();
 	
 	private static Logger depositLogger = Logger.getLogger(DepositToAccount.class);
-	private DecimalFormat currencyFormat = new DecimalFormat("#.00");
 
 	public void deposit(Customer accountHolder) throws DepositException {
-				
-		System.out.println("Enter amount to deposit: ");
-	
+					
 		Customer accountBalance = accountHolder;
 
 		depositLogger.info("Deposit method implemented");
 		System.out.println("-------------------------------------");
 		System.out.println("Enter amount to deposit: ");
 		
+		try {
 		double depositAmount = bankScanner.nextDouble();
-		Double i = depositAmount;
+		Double i = Math.abs(depositAmount);
 		Double j = accountBalance.getBalance();
 
-		if (i > 5000) {
+		if (i > 10000) {
 			System.out.println("Deposit too large. Plese enter a different amount or visit a branch.");
-			depositLogger.debug("User trying to deposit a large amount");
+			depositLogger.warn("User trying to deposit a large amount");
 			deposit(accountHolder);
-			throw new WithdrawException("Insufficient Funds");
-		} else if (i <= 0) {
-			System.out.println("Invalid input. Please enter a positive number.");
-			depositLogger.debug("User trying to deposit with a negative input");
-			deposit(accountHolder);
-			throw new WithdrawException("Invalid input");
+			throw new DepositException("Insufficient Funds");
 		}else {
 			double balanceAfterDeposit = j + i;
-			System.out.println("Deposit Amount Confirmation: " + i);
-			System.out.println("NEW BALANCE: " + balanceAfterDeposit);
+			System.out.println("Deposit Amount Confirmation: " + df.format(i));
+			System.out.println("NEW BALANCE: $" + df.format(balanceAfterDeposit));
 			
 			accountBalance.setBalance(balanceAfterDeposit);		
-			depositLogger.warn("Updating into database");
+			depositLogger.info("Updating into database");
 			dbUser.updateAccount(accountBalance);
-
-		}			
+		}
+		} catch (InputMismatchException e) {
+			depositLogger.debug("Invalid input type",e);
+			System.out.println("Invalid input. Please enter a numeric value");
+			bankScanner.next();
+		}
 			
 
 		cc.menuOptionsForCustomerInput(accountHolder);
